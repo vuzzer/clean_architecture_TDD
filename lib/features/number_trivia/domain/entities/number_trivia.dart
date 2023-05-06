@@ -1,15 +1,17 @@
 import 'package:built_value/built_value.dart';
 import 'package:clarchtdd/core/interfaces/trivia.dart';
+import 'package:equatable/equatable.dart';
 
-part 'number_trivia.g.dart';
 
 
-abstract class NumberTrivia implements Trivia, Built<NumberTrivia, NumberTriviaBuilder>  {
+class NumberTrivia extends Equatable{
 
-  // fields go here
-  NumberTrivia._();
+  final int number;
+  final String text;
 
-  factory NumberTrivia([void  Function(NumberTriviaBuilder) updates]) = _$NumberTrivia;
-
+  const NumberTrivia({required this.number, required this.text});
+  
+  @override
+  List<Object> get props => [number, text];
 
 }

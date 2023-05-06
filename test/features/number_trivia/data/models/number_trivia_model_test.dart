@@ -1,8 +1,6 @@
 import 'dart:convert';
-import 'dart:math';
-
-import 'package:clarchtdd/core/interfaces/trivia.dart';
 import 'package:clarchtdd/features/number_trivia/data/models/number_trivia_model.dart';
+import 'package:clarchtdd/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../../fixtures/fixture_reader.dart';
@@ -11,14 +9,14 @@ void main() {
   late final NumberTriviaModel tNumberTriviaModel;
 
   setUpAll(() {
-    tNumberTriviaModel = NumberTriviaModel((b) => b
-      ..number = 1
-      ..text = "Test Text");
+    tNumberTriviaModel = const NumberTriviaModel(
+    number: 1,
+    text: "Test Text");
   });
 
   test("Should be a subclass of NumberTrivia entitiy", () async {
     //assert
-    expect(tNumberTriviaModel, isA<Trivia>());
+    expect(tNumberTriviaModel, isA<NumberTrivia>());
   });
 
   group("fromJson", () {

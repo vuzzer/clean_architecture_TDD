@@ -1,40 +1,30 @@
-import 'dart:convert';
-
-import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart';
-import 'package:clarchtdd/core/interfaces/trivia.dart';
-import 'package:built_value/serializer.dart';
-import 'package:clarchtdd/core/serializer/serializers.dart';
 import 'package:clarchtdd/features/number_trivia/domain/entities/number_trivia.dart';
 
-part 'number_trivia_model.g.dart';
+class NumberTriviaModel extends NumberTrivia {
+  const NumberTriviaModel({
+    required String text,
+    required int number,
+  }) : super(
+          text: text,
+          number: number,
+        );
 
-abstract class NumberTriviaModel
-    implements Trivia,
-        
-        Built<NumberTriviaModel, NumberTriviaModelBuilder> {
-
-
-  NumberTriviaModel._();
-
-  factory NumberTriviaModel([void Function(NumberTriviaModelBuilder) updates]) =
-      _$NumberTriviaModel;
-  
-    static NumberTriviaModel fromJson(Map<String, dynamic> data) {
-    return serializers.deserializeWith(NumberTriviaModel.serializer, {
-      "number": (data["number"] as num).toInt(),
-      "text": data["text"]
-    } ) as NumberTriviaModel;
+  factory NumberTriviaModel.fromJson(Map<String, dynamic> json) {
+    return NumberTriviaModel(
+      text: json['text'],
+      number: (json['number'] as num).toInt(),
+    );
   }
 
-    Map<String, dynamic> toJson() {
-    var numberTriviaModelFormatTojson =
-        json.encode(serializers.serializeWith(NumberTriviaModel.serializer, this));
-    Map<String, dynamic> numberTriviaModel = json.decode(numberTriviaModelFormatTojson);
-    return numberTriviaModel;
+  //This methods return the entity matches to The model
+  NumberTrivia toNumberTrivia() {
+    return NumberTrivia(number: number, text: text);
   }
 
-    static Serializer<NumberTriviaModel> get serializer =>
-      _$numberTriviaModelSerializer;
-
+  Map<String, dynamic> toJson() {
+    return {
+      'text': text,
+      'number': number,
+    };
+  }
 }
