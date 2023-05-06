@@ -1,6 +1,6 @@
 import 'package:clarchtdd/core/error/exception.dart';
 import 'package:clarchtdd/core/error/failure.dart';
-import 'package:clarchtdd/core/platform/network_info.dart';
+import 'package:clarchtdd/core/network/network_info.dart';
 import 'package:clarchtdd/features/number_trivia/data/datasource/number_trivia_local_data_source.dart';
 import 'package:clarchtdd/features/number_trivia/data/datasource/number_trivia_remote_data_source.dart';
 import 'package:clarchtdd/features/number_trivia/data/models/number_trivia_model.dart';
