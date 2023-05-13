@@ -5,7 +5,6 @@ import 'package:clarchtdd/features/number_trivia/data/datasource/number_trivia_l
 import 'package:clarchtdd/features/number_trivia/data/datasource/number_trivia_remote_data_source.dart';
 import 'package:clarchtdd/features/number_trivia/data/models/number_trivia_model.dart';
 import 'package:clarchtdd/features/number_trivia/data/repositories/number_trivia_repository_impl.dart';
-import 'package:clarchtdd/features/number_trivia/domain/entities/number_trivia.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -34,15 +33,17 @@ void main() {
   });
 
   void runTestsOnline(Function body) {
-    group("device is online", () {
+    group("device is on", () {
       setUp(() =>
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => true));
       body();
     });
   }
 
+
+
   void runTestsOffline(Function body) {
-    group("device is offline", () {
+    group("device is off", () {
       setUp(() =>
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => false));
       body();
@@ -52,7 +53,7 @@ void main() {
   group("getConcreteNumberTrivia", () {
     tNumber = 1;
     final tNumberTriviaModel = NumberTriviaModel(number: tNumber, text: "Test");
-    final NumberTrivia tNumberTrivia = tNumberTriviaModel;
+    final NumberTriviaModel tNumberTrivia = tNumberTriviaModel;
     runTestsOnline(() {
       test(
           "should return server failure when the call to remote data source is unsuccessful",
@@ -114,7 +115,7 @@ void main() {
   group("getRandomNumberTrivia", () {
     tNumber = 1;
     final tNumberTriviaModel = NumberTriviaModel(number: tNumber, text: "Test");
-    final NumberTrivia tNumberTrivia = tNumberTriviaModel;
+    final NumberTriviaModel tNumberTrivia = tNumberTriviaModel;
 
     runTestsOnline(() {
       test(

@@ -5,15 +5,13 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:clarchtdd/core/network/network_info.dart' as _i7;
+import 'package:clarchtdd/core/network/network_info.dart' as _i6;
 import 'package:clarchtdd/features/number_trivia/data/datasource/number_trivia_local_data_source.dart'
     as _i5;
 import 'package:clarchtdd/features/number_trivia/data/datasource/number_trivia_remote_data_source.dart'
     as _i3;
 import 'package:clarchtdd/features/number_trivia/data/models/number_trivia_model.dart'
     as _i2;
-import 'package:clarchtdd/features/number_trivia/domain/entities/number_trivia.dart'
-    as _i6;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -107,7 +105,7 @@ class MockNumberTriviaLocalDataSource extends _i1.Mock
         )),
       ) as _i4.Future<_i2.NumberTriviaModel>);
   @override
-  _i4.Future<void> cacheNumberTrivia(_i6.NumberTrivia? triviaModel) =>
+  _i4.Future<void> cacheNumberTrivia(_i2.NumberTriviaModel? triviaModel) =>
       (super.noSuchMethod(
         Invocation.method(
           #cacheNumberTrivia,
@@ -121,7 +119,7 @@ class MockNumberTriviaLocalDataSource extends _i1.Mock
 /// A class which mocks [NetworkInfo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i7.NetworkInfo {
+class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
   MockNetworkInfo() {
     _i1.throwOnMissingStub(this);
   }

@@ -8,7 +8,7 @@ import 'package:clarchtdd/core/error/failure.dart';
 import 'package:clarchtdd/features/number_trivia/domain/repositories/number_trivia_repository.dart';
 import 'package:dartz/dartz.dart';
 
-typedef _ConcreteOrRandomChooser = Future<NumberTrivia> Function();
+typedef _ConcreteOrRandomChooser = Future<NumberTriviaModel> Function();
 
 class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   final NumberTriviaRemoteDataSource remoteDataSource;
