@@ -1,5 +1,3 @@
-import 'package:built_value/built_value.dart';
-import 'package:clarchtdd/core/interfaces/trivia.dart';
 import 'package:equatable/equatable.dart';
 
 
