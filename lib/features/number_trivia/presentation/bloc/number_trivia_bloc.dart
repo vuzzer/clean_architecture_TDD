@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:clarchtdd/core/error/failure.dart';
 import 'package:clarchtdd/core/interfaces/trivia.dart';
 import 'package:clarchtdd/core/usecases/usecase.dart';
@@ -28,28 +30,35 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
       : super(Empty()) {
     on<NumberTriviaEvent>((event, emit) async {
       if (event is GetTriviaForConcreteNumber) {
+        emit(Loading());
+
         final inputEither =
             inputConverter.stringToUnsignedInteger(event.numberString);
 
-        inputEither.fold((failure) async* {
-          yield const Error(invalidInputFailureMessage);
-        }, (integer) async* {
-          yield Loading();
+        await Future<void>.delayed(
+          const Duration(seconds: 2),
+        );
+
+
+        await inputEither.fold((failure) {
+          emit(const Error(invalidInputFailureMessage));
+        }, (integer) async {
           final failureOrTrivia =
               await getConcreteNumberTrivia(Params(number: integer));
-          _eitherLoadedOrErrorState(failureOrTrivia);
+          await _eitherLoadedOrErrorState(failureOrTrivia, emit);
         });
       } else if (event is GetTriviaForRandomNumber) {
+        emit(Loading());
         final failureOrTrivia = await getRandomNumberTrivia(NoParams());
-        _eitherLoadedOrErrorState(failureOrTrivia);
+        await _eitherLoadedOrErrorState(failureOrTrivia, emit);
       }
     });
   }
 
-  Stream<NumberTriviaState> _eitherLoadedOrErrorState(
-      Either<Failure, NumberTrivia> either) async* {
-    yield either.fold((failure) => Error(_mapFailureToMessage(failure)),
-        (trivia) => Loaded(trivia));
+  Future<void> _eitherLoadedOrErrorState(
+      Either<Failure, NumberTrivia> either, Emitter emit) async {
+    either.fold((failure) => emit(Error(_mapFailureToMessage(failure))),
+        (trivia) => emit(Loaded(trivia)));
   }
 
   String _mapFailureToMessage(failure) {
