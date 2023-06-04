@@ -49,9 +49,9 @@ class TriviaControls extends StatefulWidget {
             const SizedBox(width: 10),
             Expanded(
               child: ElevatedButton(
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.grey),
                 onPressed: dispatchRandom,
                 child: const Text('Get random trivia'),
-                
               ),
             ),
           ],
