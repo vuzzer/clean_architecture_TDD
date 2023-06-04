@@ -73,7 +73,7 @@ Every **feature** of the app, like getting some interesting trivia about a numbe
 
 Download project
 ```bash
-git clone https://github.com/salvadordeveloper/flutter-crypto-app
+git clone https://github.com/vuzzer/clean_architecture_TDD.git
 ```
 
 Get flutter dependencies
